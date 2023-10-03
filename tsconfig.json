@@ -34,7 +34,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/pages/_document.jsx", "src/app/layout/NavigationScroll.jsx", "src/app/layout/MainLayout.jsx", "src/pages/_document.jsx"  ],
   "exclude": [
     "node_modules"
   ]

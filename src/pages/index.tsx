@@ -1,9 +1,15 @@
-import styles from "../styles/page.module.css";
+import type { NextPage } from "next";
 
-export default function Home() {
+import { Typography } from "@mui/material";
+
+const Home: NextPage = () => {
   return (
-    <main className={styles.main}>
-      <p>Here is the index page</p>
-    </main>
+    <div>
+      <Typography variant="h2" textAlign="center">
+        Hello, World
+      </Typography>
+    </div>
   );
-}
+};
+
+export default Home;

@@ -2,14 +2,14 @@ import type { NextPage } from "next";
 import { Typography } from "@mui/material";
 import Layout from "@/pages/_layout";
 
-const Home: NextPage = () => {
+const Media: NextPage = () => {
   return (
     <Layout title={"Favorites"}>
       <Typography variant="h2" textAlign="center">
-        Welcome to <strong>favorites</strong>
+        Medias
       </Typography>
     </Layout>
   );
 };
 
-export default Home;
+export default Media;

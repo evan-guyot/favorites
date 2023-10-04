@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { Typography } from "@mui/material";
-import Layout from "@/pages/_layout";
+import Layout from "@/components/global/layout";
 
 const Settings: NextPage = () => {
   return (

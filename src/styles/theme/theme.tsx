@@ -14,7 +14,7 @@ const defaultTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: "monospace",
+    fontFamily: "system-ui",
   },
 });
 

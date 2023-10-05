@@ -1,16 +1,25 @@
 import { createTheme } from "@mui/material/styles";
-import { red } from "@mui/material/colors";
+import { blue, green, orange, red } from "@mui/material/colors";
 
 const defaultTheme = createTheme({
   palette: {
     primary: {
-      main: "#000",
+      main: "#334155",
     },
     secondary: {
-      main: "#fff",
+      main: "#8b5cf6",
     },
     error: {
-      main: red[300],
+      main: "#ef4444",
+    },
+    info: {
+      main: "#3b82f6",
+    },
+    success: {
+      main: "#22c55e",
+    },
+    warning: {
+      main: "#f97316",
     },
   },
   typography: {

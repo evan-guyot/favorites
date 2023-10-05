@@ -1,5 +1,6 @@
 import { Book, Media, Movie, Serie, mockedData } from "@/models/medias";
 import {
+  Button,
   Chip,
   IconButton,
   Link,
@@ -19,9 +20,15 @@ import { useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
+import {
+  getMediasFromStorage,
+  setMediasInStorage,
+} from "@/functions/localStorage/localStorage";
 
 const MediaListDisplayer = () => {
-  const originalList = mockedData;
+  const originalList: Media[] = getMediasFromStorage()
+    ? getMediasFromStorage()
+    : [];
   const [mediaList, setMediaList] = useState<Array<Media>>(originalList);
   const [filter, setFilter] = useState("all");
 
@@ -57,6 +64,10 @@ const MediaListDisplayer = () => {
     setMediaList(newMediaList);
   };
 
+  const dataSaver = () => {
+    setMediasInStorage(mockedData);
+  };
+
   return (
     <>
       <ToggleButtonGroup
@@ -66,7 +77,6 @@ const MediaListDisplayer = () => {
         onChange={filterChange}
         aria-label="Platform"
         sx={{ margin: "auto" }}>
-        <ToggleButton value="all">All</ToggleButton>
         <ToggleButton value="series">Series</ToggleButton>
         <ToggleButton value="books">Books</ToggleButton>
         <ToggleButton value="movies">Movies</ToggleButton>
@@ -114,6 +124,7 @@ const MediaListDisplayer = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <Button onClick={() => dataSaver()}>Generate fake data</Button>
     </>
   );
 };

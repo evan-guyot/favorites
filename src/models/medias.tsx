@@ -1,13 +1,20 @@
-import { ChipPropsColorOverrides } from "@mui/material";
 import { MuiColorChip } from "./muiComplements";
 
 class Media {
+  type: string;
   id: number;
   title: string;
   url: string;
   state: MediaState;
 
-  constructor(id: number, title: string, url: string, state: MediaState) {
+  constructor(
+    type: string,
+    id: number,
+    title: string,
+    url: string,
+    state: MediaState
+  ) {
+    this.type = type;
     this.id = id;
     this.title = title;
     this.url = url;
@@ -16,20 +23,38 @@ class Media {
 }
 
 class Serie extends Media {
-  constructor(id: number, title: string, url: string, state: MediaState) {
-    super(id, title, url, state);
+  constructor(
+    type: string,
+    id: number,
+    title: string,
+    url: string,
+    state: MediaState
+  ) {
+    super(type, id, title, url, state);
   }
 }
 
 class Movie extends Media {
-  constructor(id: number, title: string, url: string, state: MediaState) {
-    super(id, title, url, state);
+  constructor(
+    type: string,
+    id: number,
+    title: string,
+    url: string,
+    state: MediaState
+  ) {
+    super(type, id, title, url, state);
   }
 }
 
 class Book extends Media {
-  constructor(id: number, title: string, url: string, state: MediaState) {
-    super(id, title, url, state);
+  constructor(
+    type: string,
+    id: number,
+    title: string,
+    url: string,
+    state: MediaState
+  ) {
+    super(type, id, title, url, state);
   }
 }
 
@@ -50,9 +75,16 @@ export const mediaStates = [
 ];
 
 export const mockedData = [
-  new Serie(0, "Dark", "https://netflix.com", mediaStates[0]),
-  new Book(1, "The Boxer", "https://webtoons.com/the-boxer", mediaStates[1]),
+  new Serie("Serie", 0, "Dark", "https://netflix.com", mediaStates[0]),
   new Book(
+    "Book",
+    1,
+    "The Boxer",
+    "https://webtoons.com/the-boxer",
+    mediaStates[1]
+  ),
+  new Book(
+    "Book",
     2,
     "Le lecteur omniscient",
     "https://webtoons.com/omniscient-reader",

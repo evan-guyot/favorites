@@ -15,7 +15,8 @@ function getMediasFromStorage() {
               item.id,
               item.title,
               item.url,
-              item.state
+              item.state,
+              item.rating
             );
           case "Movie":
             return new Movie(
@@ -23,7 +24,8 @@ function getMediasFromStorage() {
               item.id,
               item.title,
               item.url,
-              item.state
+              item.state,
+              item.rating
             );
           case "Book":
             return new Book(
@@ -31,7 +33,8 @@ function getMediasFromStorage() {
               item.id,
               item.title,
               item.url,
-              item.state
+              item.state,
+              item.rating
             );
           default:
             return item;
@@ -53,7 +56,8 @@ function addMediaToLocalStorage(newMedia: Media) {
   const mediasFromStorage = getMediasFromStorage();
   var newMedias: Array<Media> = mediasFromStorage ? mediasFromStorage : [];
 
-  newMedia.id = newMedias[newMedias.length - 1].id + 1;
+  newMedia.id =
+    newMedias.length > 0 ? newMedias[newMedias.length - 1].id + 1 : 0;
 
   newMedias.push(newMedia);
 

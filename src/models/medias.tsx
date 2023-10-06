@@ -6,19 +6,22 @@ class Media {
   title: string;
   url: string;
   state: MediaState;
+  rating: number;
 
   constructor(
     type: string,
     id: number,
     title: string,
     url: string,
-    state: MediaState
+    state: MediaState,
+    rating: number
   ) {
     this.type = type;
     this.id = id;
     this.title = title;
     this.url = url;
     this.state = state;
+    this.rating = rating;
   }
 }
 class Serie extends Media {
@@ -27,9 +30,10 @@ class Serie extends Media {
     id: number,
     title: string,
     url: string,
-    state: MediaState
+    state: MediaState,
+    rating: number
   ) {
-    super(type, id, title, url, state);
+    super(type, id, title, url, state, rating);
   }
 }
 
@@ -39,9 +43,10 @@ class Movie extends Media {
     id: number,
     title: string,
     url: string,
-    state: MediaState
+    state: MediaState,
+    rating: number
   ) {
-    super(type, id, title, url, state);
+    super(type, id, title, url, state, rating);
   }
 }
 
@@ -51,9 +56,10 @@ class Book extends Media {
     id: number,
     title: string,
     url: string,
-    state: MediaState
+    state: MediaState,
+    rating: number
   ) {
-    super(type, id, title, url, state);
+    super(type, id, title, url, state, rating);
   }
 }
 
@@ -75,9 +81,11 @@ const mediaStates = [
   new MediaState("Finished", "success"),
 ];
 
+const emptyMedia = new Media(mediaTypes[0], -1, "", "", mediaStates[0], 2);
+
 const getMediaStateByName = (name: string) => {
   return mediaStates.find((state) => state.name === name);
 };
 
-export { mediaStates, mediaTypes, getMediaStateByName };
+export { mediaStates, mediaTypes, emptyMedia, getMediaStateByName };
 export { Media, Serie, Movie, Book, MediaState };

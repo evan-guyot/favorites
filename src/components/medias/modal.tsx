@@ -1,6 +1,7 @@
 import { addMediaToLocalStorage } from "@/functions/localStorage/localStorage";
 import {
   Media,
+  emptyMedia,
   getMediaStateByName,
   mediaStates,
   mediaTypes,
@@ -10,6 +11,7 @@ import {
   Button,
   MenuItem,
   Modal,
+  Rating,
   TextField,
   Typography,
 } from "@mui/material";
@@ -22,15 +24,15 @@ const MediaModal = (props: {
   hasBeenSubmitted: () => void;
 }) => {
   const { open, setOpen, media, hasBeenSubmitted } = props;
-  const [newMedia, setNewMedia] = useState(
-    media ? media : new Media(mediaTypes[0], -1, "", "", mediaStates[0])
-  );
+  const [newMedia, setNewMedia] = useState(media ? media : emptyMedia);
   const handleClose = () => setOpen(false);
 
   const submitForm = () => {
     addMediaToLocalStorage(newMedia);
+
     hasBeenSubmitted();
     handleClose();
+    setNewMedia(emptyMedia);
   };
 
   const style = {
@@ -115,6 +117,17 @@ const MediaModal = (props: {
             </MenuItem>
           ))}
         </TextField>
+        <Typography component="legend">Rating</Typography>
+        <Rating
+          name="simple-controlled"
+          value={newMedia.rating}
+          onChange={(e, newValue) => {
+            setNewMedia({
+              ...newMedia,
+              rating: newValue,
+            });
+          }}
+        />
         <Button variant="contained" onClick={() => submitForm()}>
           Add
         </Button>

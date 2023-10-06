@@ -4,6 +4,7 @@ import {
   IconButton,
   Link,
   Paper,
+  Rating,
   Table,
   TableBody,
   TableCell,
@@ -98,9 +99,10 @@ const MediaListDisplayer = () => {
           <TableHead>
             <TableRow>
               <TableCell>Type</TableCell>
-              <TableCell>Titre</TableCell>
+              <TableCell>Title</TableCell>
               <TableCell>Url</TableCell>
               <TableCell>State</TableCell>
+              <TableCell>Rating</TableCell>
               <TableCell align="center">
                 <IconButton color="primary" onClick={() => handleOpenModal()}>
                   <AddIcon />
@@ -122,6 +124,9 @@ const MediaListDisplayer = () => {
                 </TableCell>
                 <TableCell>
                   <Chip label={media.state.name} color={media.state.color} />
+                </TableCell>
+                <TableCell>
+                  <Rating name="read-only" value={media.rating} readOnly />
                 </TableCell>
                 <TableCell align="center">
                   <IconButton aria-label="edit">

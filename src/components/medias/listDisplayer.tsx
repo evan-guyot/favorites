@@ -1,18 +1,15 @@
-import { Book, Media, Movie, Serie, mockedData } from "@/models/medias";
+import { Book, Media, Movie, Serie } from "@/models/medias";
 import {
-  Button,
   Chip,
   IconButton,
   Link,
   Paper,
-  Tab,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Tabs,
   ToggleButton,
   ToggleButtonGroup,
 } from "@mui/material";
@@ -22,15 +19,15 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import {
   getMediasFromStorage,
-  setMediasInStorage,
+  removeMediaFromLocalStorage,
 } from "@/functions/localStorage/localStorage";
+import MediaModal from "./modal";
 
 const MediaListDisplayer = () => {
-  const originalList: Media[] = getMediasFromStorage()
-    ? getMediasFromStorage()
-    : [];
+  var originalList: Media[] = getMediasFromStorage();
   const [mediaList, setMediaList] = useState<Array<Media>>(originalList);
   const [filter, setFilter] = useState("all");
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const getClassName = (media: Media) => {
     if (media instanceof Serie) return "Serie";
@@ -60,16 +57,31 @@ const MediaListDisplayer = () => {
     }
 
     setFilter(newFilter);
-
     setMediaList(newMediaList);
   };
 
-  const dataSaver = () => {
-    setMediasInStorage(mockedData);
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const deleteMedia = (id: number) => {
+    removeMediaFromLocalStorage(id);
+    reloadList();
+  };
+
+  const reloadList = () => {
+    originalList = getMediasFromStorage();
+    setMediaList(originalList);
   };
 
   return (
     <>
+      <MediaModal
+        open={isModalOpen}
+        setOpen={setIsModalOpen}
+        media={undefined}
+        hasBeenSubmitted={reloadList}
+      />
       <ToggleButtonGroup
         color="primary"
         value={filter}
@@ -90,16 +102,16 @@ const MediaListDisplayer = () => {
               <TableCell>Url</TableCell>
               <TableCell>State</TableCell>
               <TableCell align="center">
-                <IconButton color="primary">
+                <IconButton color="primary" onClick={() => handleOpenModal()}>
                   <AddIcon />
                 </IconButton>
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {mediaList.map((media) => (
+            {mediaList.map((media, index) => (
               <TableRow
-                key={media.id}
+                key={index}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                 <TableCell>{getClassName(media)}</TableCell>
                 <TableCell component="th" scope="row">
@@ -115,7 +127,10 @@ const MediaListDisplayer = () => {
                   <IconButton aria-label="edit">
                     <EditIcon />
                   </IconButton>
-                  <IconButton aria-label="delete" color="error">
+                  <IconButton
+                    aria-label="delete"
+                    color="error"
+                    onClick={() => deleteMedia(media.id)}>
                     <DeleteIcon />
                   </IconButton>
                 </TableCell>
@@ -124,7 +139,6 @@ const MediaListDisplayer = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <Button onClick={() => dataSaver()}>Generate fake data</Button>
     </>
   );
 };

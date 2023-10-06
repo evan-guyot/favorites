@@ -1,6 +1,6 @@
 import { Book, Media, Movie, Serie } from "@/models/medias";
 
-export function getMediasFromStorage() {
+function getMediasFromStorage() {
   if (typeof window !== "undefined") {
     const medias = localStorage.getItem("medias");
 
@@ -38,11 +38,43 @@ export function getMediasFromStorage() {
         }
       });
     }
+    return [];
   }
+  return [];
 }
 
-export function setMediasInStorage(newMedias: Array<Media>) {
+function setMediasInStorage(newMedias: Array<Media>) {
   if (typeof window !== "undefined") {
     localStorage.setItem("medias", JSON.stringify(newMedias));
   }
 }
+
+function addMediaToLocalStorage(newMedia: Media) {
+  const mediasFromStorage = getMediasFromStorage();
+  var newMedias: Array<Media> = mediasFromStorage ? mediasFromStorage : [];
+
+  newMedia.id = newMedias[newMedias.length - 1].id + 1;
+
+  newMedias.push(newMedia);
+
+  setMediasInStorage(newMedias);
+}
+
+function removeMediaFromLocalStorage(mediaId: number) {
+  const mediasFromStorage = getMediasFromStorage();
+
+  const mediaIndex = mediasFromStorage.findIndex(
+    (media) => media.id === mediaId
+  );
+
+  mediasFromStorage.splice(mediaIndex, 1);
+
+  setMediasInStorage(mediasFromStorage);
+}
+
+export {
+  getMediasFromStorage,
+  setMediasInStorage,
+  addMediaToLocalStorage,
+  removeMediaFromLocalStorage,
+};

@@ -21,7 +21,6 @@ class Media {
     this.state = state;
   }
 }
-
 class Serie extends Media {
   constructor(
     type: string,
@@ -68,28 +67,17 @@ class MediaState {
   }
 }
 
-export const mediaStates = [
-  new MediaState("Started", "default"),
+const mediaTypes = ["Serie", "Movie", "Book"];
+
+const mediaStates = [
+  new MediaState("Not Started", "default"),
   new MediaState("In Progress", "info"),
   new MediaState("Finished", "success"),
 ];
 
-export const mockedData = [
-  new Serie("Serie", 0, "Dark", "https://netflix.com", mediaStates[0]),
-  new Book(
-    "Book",
-    1,
-    "The Boxer",
-    "https://webtoons.com/the-boxer",
-    mediaStates[1]
-  ),
-  new Book(
-    "Book",
-    2,
-    "Le lecteur omniscient",
-    "https://webtoons.com/omniscient-reader",
-    mediaStates[2]
-  ),
-];
+const getMediaStateByName = (name: string) => {
+  return mediaStates.find((state) => state.name === name);
+};
 
+export { mediaStates, mediaTypes, getMediaStateByName };
 export { Media, Serie, Movie, Book, MediaState };

@@ -28,8 +28,8 @@ const Home: NextPage = () => {
           <Link href="https://github.com/evan-guyot">Evan Guyot</Link>
         </Typography>
         <Typography variant="body1">
-          Everything's saved on your device, in the local storage. You're the
-          master of your data !
+          Everything&#39;s saved on your device, in the local storage.
+          You&#39;re the master of your data !
         </Typography>
         <Divider>
           <Chip icon={<TvIcon fontSize="small" />} label="MEDIAS" />

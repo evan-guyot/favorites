@@ -5,7 +5,7 @@ Welcome to my application built with Next.js, TypeScript, and Material-UI compon
 ## Table of Contents
 
 - [Getting Started](#getting-started)
-- [Preview](#features)
+- [Preview](#preview)
 - [Demo](#demo)
 
 ## Getting Started

@@ -5,7 +5,6 @@ import { Pie } from "@/components/global/pie";
 import { getMediasFromStorage } from "@/functions/localStorage/localStorage";
 import { useEffect, useState } from "react";
 import Bar from "@/components/global/bar";
-import { MuiChartsBarData } from "@/models/muiComplements";
 
 interface PieData {
   value: number;
@@ -16,63 +15,25 @@ const Statistics: NextPage = () => {
   const [isClient, setIsClient] = useState(false);
 
   const dataByType: PieData[] = [];
-  const dataByRate: PieData[] = [];
-  const dataRate: MuiChartsBarData[] = [];
   const medias = getMediasFromStorage();
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  const buildData = () => {
-    var types: string[] = [];
+  var types: string[] = [];
 
-    medias.forEach((media) => {
-      !types.includes(media.type) && types.push(media.type);
+  medias.forEach((media) => {
+    !types.includes(media.type) && types.push(media.type);
+  });
+
+  types.forEach((type) => {
+    dataByType.push({
+      label: type,
+      value: medias.filter((media) => media.type == type).length,
     });
+  });
 
-    types.forEach((type) => {
-      dataByType.push({
-        label: type,
-        value: medias.filter((media) => media.type == type).length,
-      });
-    });
-
-    var stars: number[] = [];
-
-    medias.forEach((media) => {
-      !stars.includes(media.rating) && stars.push(media.rating);
-    });
-
-    stars.sort();
-
-    stars.forEach((star) => {
-      dataByRate.push({
-        label: "⭐".repeat(star),
-        value: medias.filter((media) => media.rating == star).length,
-      });
-    });
-
-    types.forEach((type) => {
-      dataRate.push({
-        data: [
-          medias.filter((media) => media.rating == 1 && media.type == type)
-            .length,
-          medias.filter((media) => media.rating == 2 && media.type == type)
-            .length,
-          medias.filter((media) => media.rating == 3 && media.type == type)
-            .length,
-          medias.filter((media) => media.rating == 4 && media.type == type)
-            .length,
-          medias.filter((media) => media.rating == 5 && media.type == type)
-            .length,
-        ],
-        label: type,
-      });
-    });
-  };
-
-  buildData();
   var types: string[] = [];
 
   medias.forEach((media) => {

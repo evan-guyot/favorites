@@ -109,7 +109,9 @@ const Statistics: NextPage = () => {
             <Pie data={dataByType} showLegend={true} />
           </Box>
           <Box sx={{ margin: "auto", width: "fit-content" }}>
-            <Typography variant="h4">Number of Media's Type by Rate</Typography>
+            <Typography variant="h4">
+              Number of Media&#39;s Type by Rate
+            </Typography>
             <Bar
               series={typeData}
               labels={["⭐", "⭐⭐", "⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐⭐⭐"]}

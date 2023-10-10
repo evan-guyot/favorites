@@ -14,14 +14,14 @@ class Media {
     title: string,
     url: string,
     state: MediaState,
-    rating: number
+    rating: number | undefined
   ) {
     this.type = type;
     this.id = id;
     this.title = title;
     this.url = url;
     this.state = state;
-    this.rating = rating;
+    this.rating = state.name !== "Not Started" ? rating : undefined;
   }
 }
 class Serie extends Media {
@@ -31,7 +31,7 @@ class Serie extends Media {
     title: string,
     url: string,
     state: MediaState,
-    rating: number
+    rating: number | undefined
   ) {
     super(type, id, title, url, state, rating);
   }
@@ -44,7 +44,7 @@ class Movie extends Media {
     title: string,
     url: string,
     state: MediaState,
-    rating: number
+    rating: number | undefined
   ) {
     super(type, id, title, url, state, rating);
   }
@@ -57,7 +57,7 @@ class Book extends Media {
     title: string,
     url: string,
     state: MediaState,
-    rating: number
+    rating: number | undefined
   ) {
     super(type, id, title, url, state, rating);
   }

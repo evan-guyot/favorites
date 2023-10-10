@@ -59,7 +59,7 @@ function addMediaToLocalStorage(newMedia: Media) {
   newMedia.id =
     newMedias.length > 0 ? newMedias[newMedias.length - 1].id + 1 : 0;
 
-  newMedias.push(newMedia);
+  newMedias.unshift(newMedia);
 
   setMediasInStorage(newMedias);
 }

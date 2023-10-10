@@ -13,6 +13,7 @@ import {
   TableRow,
   ToggleButton,
   ToggleButtonGroup,
+  Typography,
 } from "@mui/material";
 import { useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
@@ -126,7 +127,11 @@ const MediaListDisplayer = () => {
                   <Chip label={media.state.name} color={media.state.color} />
                 </TableCell>
                 <TableCell>
-                  <Rating name="read-only" value={media.rating} readOnly />
+                  {media.rating ? (
+                    <Rating name="read-only" value={media.rating} readOnly />
+                  ) : (
+                    <Typography>Not rated yet</Typography>
+                  )}
                 </TableCell>
                 <TableCell align="center">
                   <IconButton aria-label="edit">

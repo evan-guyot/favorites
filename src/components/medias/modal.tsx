@@ -117,17 +117,22 @@ const MediaModal = (props: {
             </MenuItem>
           ))}
         </TextField>
-        <Typography component="legend">Rating</Typography>
-        <Rating
-          name="simple-controlled"
-          value={newMedia.rating}
-          onChange={(e, newValue) => {
-            setNewMedia({
-              ...newMedia,
-              rating: newValue,
-            });
-          }}
-        />
+        {newMedia.state.name !== "Not Started" && (
+          <>
+            <Typography component="legend">Rating</Typography>
+            <Rating
+              name="simple-controlled"
+              value={newMedia.rating}
+              onChange={(e, newValue) => {
+                setNewMedia({
+                  ...newMedia,
+                  rating: newValue,
+                });
+              }}
+            />
+          </>
+        )}
+
         <Button variant="contained" onClick={() => submitForm()}>
           Add
         </Button>

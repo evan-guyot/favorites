@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { Typography, Link, Container, Divider, Chip } from "@mui/material";
 import Layout from "@/components/global/layout";
 import TvIcon from "@mui/icons-material/Tv";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
+import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 const Home: NextPage = () => {
@@ -20,8 +20,12 @@ const Home: NextPage = () => {
         Welcome to <strong>favorites</strong>
       </Typography>
       <Container sx={style} className="home-paragraphs-container">
-        <Divider>
-          <Chip icon={<MenuBookIcon fontSize="small" />} label="INTRODUCTION" />
+        <Divider sx={{ marginTop: "2.5em" }}>
+          <Chip
+            icon={<MenuBookIcon fontSize="small" />}
+            sx={{ paddingLeft: ".5em" }}
+            label="INTRODUCTION"
+          />
         </Divider>
         <Typography variant="body1">
           This web application has been made by{" "}
@@ -31,20 +35,25 @@ const Home: NextPage = () => {
           Everything&#39;s saved on your device, in the local storage.
           You&#39;re the master of your data !
         </Typography>
-        <Divider>
-          <Chip icon={<TvIcon fontSize="small" />} label="MEDIAS" />
+        <Divider sx={{ marginTop: "2.5em" }}>
+          <Chip
+            icon={<TvIcon fontSize="small" />}
+            sx={{ paddingLeft: ".5em" }}
+            label="MEDIAS"
+          />
         </Divider>
         <Typography variant="body1">
           Save your favorite Series, Movies, Book with a status and a rate.
         </Typography>
-        <Divider>
+        <Divider sx={{ marginTop: "2.5em" }}>
           <Chip
-            icon={<SettingsApplicationsIcon fontSize="small" />}
-            label="SETTINGS"
+            icon={<LeaderboardIcon fontSize="small" />}
+            sx={{ paddingLeft: ".5em" }}
+            label="STATISTICS"
           />
         </Divider>
         <Typography variant="body1">
-          Custom YOUR web app, its default color, the font and others soon !
+          Check the statistics of your data
         </Typography>
       </Container>
     </Layout>

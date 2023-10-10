@@ -16,6 +16,7 @@ const nextConfig = {
       transform: "@mui/lab/{{member}}",
     },
   },
+  transpilePackages: ["@mui/x-charts"],
 };
 
 module.exports = nextConfig;

@@ -1,4 +1,4 @@
-export type MuiColorChip =
+type MuiColorChip =
   | "default"
   | "primary"
   | "secondary"
@@ -6,3 +6,11 @@ export type MuiColorChip =
   | "info"
   | "success"
   | "warning";
+
+interface MuiChartsBarData {
+  data: number[];
+  stack?: string;
+  label: string;
+}
+
+export type { MuiColorChip, MuiChartsBarData };
